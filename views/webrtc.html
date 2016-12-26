@@ -1,0 +1,20 @@
+<head>
+    <!--<script src="/vendor/simpleWebRTC/simplewebrtc.bundle.js"></script>-->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/vendor/simpleWebRTC/simplewebrtc.bundle.js"></script>
+    <script src='/javascripts/siploWebRTC.js'></script>
+    <style>
+        #remoteVideos video {
+            height: 150px;
+        }
+        #localVideo {
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+<h1>Local</h1>
+<video autoplay id="localVideo"></video>
+<h1>Remote</h1>
+<div id="remoteVideos"></div>
+</body>

@@ -1,0 +1,21 @@
+{
+  "name": "SignellingServer",
+  "description": "",
+  "main": "",
+  "authors": [
+    "buddhikajay <buddhika.12@cse.mrt.ac.lk>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/buddhikajay/SignellingServer",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "simpleWebRTC": "^2.1.0"
+  }
+}
