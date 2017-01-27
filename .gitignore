@@ -1,4 +1,6 @@
 .idea
 config/*
+!config/sslcerts.dist
+!config/default.json.dist
 node_modules/*
 public/vendor/*
