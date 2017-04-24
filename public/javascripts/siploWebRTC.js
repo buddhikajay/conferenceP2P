@@ -9,9 +9,9 @@ var webrtc = new SimpleWebRTC({
    remoteVideosEl: 'remoteVideos',
    // immediately ask for camera access
    autoRequestMedia: true,
-   url: 'https://'+location.hostname+':8888'
-   // url: 'https://sandbox.simplewebrtc.com:443/',
-   // url: 'https://media.siplo.dev/'
+   // url: 'https://'+location.hostname+':8888'
+   url: 'https://sandbox.simplewebrtc.com:443/'
+   // url: 'https://media.obmcse.xyz/'
 });
 
 // we have to wait until it's ready
