@@ -24,6 +24,61 @@ socket.on('message', function(message){
     console.log(message);
 });
 
+
+// a peer video has been added
+webrtc.on('videoAdded', function (video, peer) {
+    console.log('video added', peer);
+    var remotes = document.getElementById('remotes');
+    if (remotes) {
+        var container = document.createElement('div');
+        container.className = 'videoContainer';
+        container.id = 'container_' + webrtc.getDomId(peer);
+        container.appendChild(video);
+
+        // suppress contextmenu
+        video.oncontextmenu = function () { return false; };
+
+        remotes.appendChild(container);
+        arrange();
+    }
+});
+
+
+// a peer video was removed
+webrtc.on('videoRemoved', function (video, peer) {
+    console.log('video removed ', peer);
+    var remotes = document.getElementById('remotes');
+    var el = document.getElementById(peer ? 'container_' + webrtc.getDomId(peer) : 'localScreenContainer');
+    if (remotes && el) {
+        remotes.removeChild(el);
+        arrange();
+    }
+});
+
+function arrange(){
+
+    var remotes = document.getElementById('remotes');
+    var videoCount = remotes.childElementCount;
+    if (remotes) {
+        switch (videoCount){
+          case 1:
+            console.log("Only One");
+            break;
+
+          case 2:
+            console.log("Two Classes");
+            $('.videoContainer').css('width', '40vw');
+            $('.videoContainer').css('height', '50vh');
+            break;
+          case 3:
+            console.log("Three");
+            $('.videoContainer').css('width', '25vw');
+            $('.videoContainer').css('height', '50vh');
+            break;
+        }
+    }
+}
+
 //socket.on('connect', function)
 
 
