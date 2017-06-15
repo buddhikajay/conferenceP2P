@@ -17,7 +17,7 @@ var webrtc = new SimpleWebRTC({
 // we have to wait until it's ready
 webrtc.on('readyToCall', function () {
    // you can name it anything
-   webrtc.joinRoom('your awesome room name');
+   webrtc.joinRoom('buddhikajay');
 });
 
 socket.on('message', function(message){
@@ -31,7 +31,7 @@ webrtc.on('videoAdded', function (video, peer) {
     var remotes = document.getElementById('remotes');
     if (remotes) {
         var container = document.createElement('div');
-        container.className = 'videoContainer';
+        container.className = 'videoContainer col-lg-6 col-md-6 col-sm-6 col-xs-6';
         container.id = 'container_' + webrtc.getDomId(peer);
         container.appendChild(video);
 
@@ -63,17 +63,24 @@ function arrange(){
         switch (videoCount){
           case 1:
             console.log("Only One");
+            $('.videoContainer').css('width', '90vw');
+            $('.videoContainer').css('height', '90vh');
             break;
 
           case 2:
-            console.log("Two Classes");
+            console.log("Two");
             $('.videoContainer').css('width', '40vw');
             $('.videoContainer').css('height', '50vh');
             break;
           case 3:
             console.log("Three");
-            $('.videoContainer').css('width', '25vw');
+            $('.videoContainer').css('width', '28vw');
             $('.videoContainer').css('height', '50vh');
+            break;
+          case 4:
+            console.log("Three");
+            $('.videoContainer').css('width', '28vw');
+            $('.videoContainer').css('height', '30vh');
             break;
         }
     }
