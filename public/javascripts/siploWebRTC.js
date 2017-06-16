@@ -30,16 +30,21 @@ webrtc.on('videoAdded', function (video, peer) {
     console.log('video added', peer);
     var remotes = document.getElementById('remotes');
     if (remotes) {
-        var container = document.createElement('div');
-        container.className = 'videoContainer col-lg-6 col-md-6 col-sm-6 col-xs-6';
-        container.id = 'container_' + webrtc.getDomId(peer);
-        container.appendChild(video);
+        var gallery = document.createElement('div');
+        gallery.className = 'gallery';
+        gallery.id = 'container_' + webrtc.getDomId(peer);
+        gallery.appendChild(video);
+
+        var description = document.createElement('div');
+        description.className = 'desc';
+        description.innerHTML = "description";
+        gallery.appendChild(description);
 
         // suppress contextmenu
         video.oncontextmenu = function () { return false; };
+        remotes.appendChild(gallery);
 
-        remotes.appendChild(container);
-        arrange();
+
     }
 });
 
@@ -58,7 +63,6 @@ webrtc.on('videoRemoved', function (video, peer) {
 function arrange(){
 
     var remotes = document.getElementById('remotes');
-    var videoCount = remotes.childElementCount;
     if (remotes) {
         switch (videoCount){
           case 1:
