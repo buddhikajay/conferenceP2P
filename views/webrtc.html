@@ -36,23 +36,34 @@
             height: auto;
         }*/
     </style>
+    <style>
+        div.gallery {
+            margin: 5px;
+            border: 1px solid #ccc;
+            float: left;
+            width: 180px;
+        }
+
+        div.gallery:hover {
+            border: 1px solid #777;
+        }
+
+        div.gallery video {
+            width: 100%;
+            height: auto;
+        }
+
+        div.desc {
+            padding: 15px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <div id="remotes" class="container-fluid">
-    <div id="row_1" class="row">
-        <div id="cell_1_1" class = "videoContainer center-block">
-            <video autoplay id="localVideo" class="center-block"></video>
-        </div>
-        <div id="cell_1_2"></div>
-        <div id="cell_1_3"></div>
+    <div class="gallery">
+      <video autoplay id="localVideo" class="center-block" width="300" height="200"></video>
+      <div class="desc">Add a description of the image here</div>
     </div>
-    <div id="row_2" class="row">
-        <div id="cell_2_1"></div>
-        <div id="cell_2_2"></div>
-        <div id="cell_2_3"></div>
-    </div>
-<!--     <div class="videoContainer col-lg-6 col-md-6 col-sm-6 col-xs-6" id = "local_video_container">
-        <video autoplay id="localVideo"></video>
-    </div> -->
 </div>
 </body>
