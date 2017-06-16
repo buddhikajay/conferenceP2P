@@ -2,6 +2,7 @@
  * Created by buddhikajay on 8/5/16.
  */
 var socket = io();
+var videoCount = 0;
 var webrtc = new SimpleWebRTC({
    // the id/element dom element that will hold "our" video
    localVideoEl: 'localVideo',
@@ -28,37 +29,40 @@ socket.on('message', function(message){
 // a peer video has been added
 webrtc.on('videoAdded', function (video, peer) {
     console.log('video added', peer);
-    var remotes = document.getElementById('remotes');
-    if (remotes) {
-        var container = document.createElement('div');
-        container.className = 'videoContainer col-lg-6 col-md-6 col-sm-6 col-xs-6';
-        container.id = 'container_' + webrtc.getDomId(peer);
-        container.appendChild(video);
+    videoCount ++;
+    arrange(video, peer);
+    // var remotes = document.getElementById('remotes');
+    // if (remotes) {
+    //     var container = document.createElement('div');
+    //     container.className = 'videoContainer col-lg-6 col-md-6 col-sm-6 col-xs-6';
+    //     container.id = 'container_' + webrtc.getDomId(peer);
+    //     container.appendChild(video);
 
-        // suppress contextmenu
-        video.oncontextmenu = function () { return false; };
+    //     // suppress contextmenu
+    //     video.oncontextmenu = function () { return false; };
 
-        remotes.appendChild(container);
-        arrange();
-    }
+    //     remotes.appendChild(container);
+    //     arrange();
+    // }
 });
 
 
 // a peer video was removed
 webrtc.on('videoRemoved', function (video, peer) {
     console.log('video removed ', peer);
+    -- videoCount;
     var remotes = document.getElementById('remotes');
-    var el = document.getElementById(peer ? 'container_' + webrtc.getDomId(peer) : 'localScreenContainer');
+    var el = document.getElementById(peer ? 'container_' + webrtc.getDomId(peer) : 'locallocal_video_containerScreenContainer');
     if (remotes && el) {
         remotes.removeChild(el);
         arrange();
     }
 });
 
-function arrange(){
+function arrange(video, peer){
 
     var remotes = document.getElementById('remotes');
-    var videoCount = remotes.childElementCount;
+    // var videoCount = remotes.childElementCount;
     if (remotes) {
         switch (videoCount){
           case 1:
