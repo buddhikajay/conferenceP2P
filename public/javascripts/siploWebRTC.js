@@ -43,7 +43,7 @@ webrtc.on('videoAdded', function (video, peer) {
         // suppress contextmenu
         video.oncontextmenu = function () { return false; };
         remotes.appendChild(gallery);
-
+        arrange();
 
     }
 });
@@ -62,74 +62,35 @@ webrtc.on('videoRemoved', function (video, peer) {
 
 function arrange(){
 
+    console.log('arranging....');
     var remotes = document.getElementById('remotes');
+    var videoCount = remotes.childElementCount;
     if (remotes) {
         switch (videoCount){
           case 1:
             console.log("Only One");
-            $('.videoContainer').css('width', '90vw');
-            $('.videoContainer').css('height', '90vh');
+            changeWidth(600);
             break;
-
           case 2:
             console.log("Two");
-            $('.videoContainer').css('width', '40vw');
-            $('.videoContainer').css('height', '50vh');
+            changeWidth(400);
             break;
           case 3:
             console.log("Three");
-            $('.videoContainer').css('width', '28vw');
-            $('.videoContainer').css('height', '50vh');
+            changeWidth(200);
             break;
           case 4:
-            console.log("Three");
-            $('.videoContainer').css('width', '28vw');
-            $('.videoContainer').css('height', '30vh');
+            console.log("Four");
+            changeWidth(400);
             break;
+
         }
     }
 }
 
-//socket.on('connect', function)
-
-
-
-// function hasUserMedia() {
-//    //check if the browser supports the WebRTC
-//    return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
-//    navigator.mozGetUserMedia);
-// }
-
-// if (hasUserMedia()) {
-//    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia
-//        || navigator.mozGetUserMedia;
-
-//    //enabling video and audio channels
-//    navigator.getUserMedia({ video: true, audio: true }, function (stream) {
-//       var video = document.getElementById('localVideo');
-
-//       //inserting our stream to the video tag
-//       video.src = window.URL.createObjectURL(stream);
-//    }, function (err) {});
-// } else {
-//    alert("WebRTC is not supported");
-// }
-
-// window.addEventListener('message', function (event) {
-//    console.log('onMessage: '+JSON.stringify(event.data));
-//    if(event.data['sourceId']){
-//       streamId = event.data['sourceId'];
-//       console.log(streamId);
-
-//       //enabling video and audio channels
-//       navigator.getUserMedia(
-//           { video: {mandatory: {chromeMediaSource: 'desktop', chromeMediaSourceId: streamId,maxWidth: window.screen.width,maxHeight: window.screen.height}}, audio: false },
-//           function (stream) {
-//                var video = document.getElementById('localVideo');
-
-//                //inserting our stream to the video tag
-//                video.src = window.URL.createObjectURL(stream);
-//             },
-//           function (err) {});
-//    }
-// });
+function changeWidth(width){
+    var all = document.getElementsByClassName('gallery');
+    for (var i = 0; i < all.length; i++) {
+      all[i].style.width = width+'px';
+    }
+}
